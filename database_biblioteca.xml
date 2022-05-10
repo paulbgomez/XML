@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE biblioteca[
+<!ELEMENT biblioteca (documento+)>
+
+<!ELEMENT documento (libro | revista | periodico)>
+
+<!ELEMENT libro (titulo_libro, indice_libro, sinopsis, capitulos)>
+<!ELEMENT titulo_libro (#PCDATA)>
+<!ELEMENT indice_libro (#PCDATA)>
+<!ELEMENT sinopsis (#PCDATA)>
+<!ELEMENT capitulos (capitulo+)>
+<!ELEMENT capitulo (contenido_libro+)>
+<!ELEMENT contenido_libro (#PCDATA)>
+<!ATTLIST libro 
+    id ID #REQUIRED
+    tipo_clase (novela | infantil | didactico) #REQUIRED
+>
+<!ATTLIST titulo_libro num_paginas CDATA #REQUIRED>
+<!ATTLIST capitulos num_capitulos CDATA #IMPLIED>
+<!ATTLIST capitulo num_paginas_cap CDATA #REQUIRED>
+<!ATTLIST contenido_libro enlace CDATA #REQUIRED>
+
+<!ELEMENT revista (titulo_revista, indice_revista, secciones_revista)>
+<!ELEMENT titulo_revista (#PCDATA)>
+<!ELEMENT indice_revista (#PCDATA)>
+<!ELEMENT secciones_revista (seccion_revista+)>
+<!ELEMENT seccion_revista (contenido_revista+)>
+<!ELEMENT contenido_revista (#PCDATA)>
+<!ATTLIST revista
+    id ID #REQUIRED
+    tipo_clase (informatica | corazon | coches | investigacion | otras) #REQUIRED
+>
+<!ATTLIST titulo_revista ISSN CDATA #REQUIRED>
+<!ATTLIST secciones_revista num_secciones CDATA #IMPLIED>
+<!ATTLIST seccion_revista num_paginas_sec CDATA #REQUIRED>
+<!ATTLIST contenido_revista enlace CDATA #REQUIRED>
+
+<!ELEMENT periodico (indice_periodico, secciones_periodico)>
+<!ELEMENT indice_periodico (#PCDATA)>
+<!ELEMENT secciones_periodico (seccion_periodico+)>
+<!ELEMENT seccion_periodico (articulo+)>
+<!ELEMENT articulo (contenido_periodico+)>
+<!ELEMENT contenido_periodico (#PCDATA)>
+<!ATTLIST periodico
+    id ID #REQUIRED
+    tipo_clase (nacional | internacional) #REQUIRED
+    fecha CDATA #REQUIRED
+>
+<!ATTLIST secciones_periodico num_secciones CDATA #IMPLIED>
+<!ATTLIST seccion_periodico tipo_seccion (economica | opinion | deportes | nacional | internacional) #REQUIRED>
+<!ATTLIST articulo autor CDATA #REQUIRED>
+<!ATTLIST contenido_periodico enlace CDATA #REQUIRED>
+]>
+<biblioteca>
+    <documento>
+        <libro id="L1234" tipo_clase="novela">
+            <titulo_libro num_paginas="464">Outbound Flight</titulo_libro>
+            <indice_libro>Outbound Flight</indice_libro>
+            <sinopsis>
+                It began as the ultimate voyage of discovery, only to become a dark chapter in Jedi history. Now acclaimed author Timothy Zahn returns to tell the whole extraordinary story of the remarkable—and doomed—Outbound Flight Project.
+            </sinopsis>
+            <capitulos num_capitulos="2">
+                <capitulo num_paginas_cap="24">
+                    <contenido_libro enlace="#">
+                    Outbound Flight
+                    </contenido_libro>
+                </capitulo>
+                <capitulo num_paginas_cap="20">
+                    <contenido_libro enlace="#">
+                    Outbound Flight
+                    </contenido_libro>
+                </capitulo>
+            </capitulos>
+        </libro>
+    </documento>
+
+    <documento>
+        <periodico id="P1234" tipo_clase="internacional" fecha="08/05/2022">
+            <indice_periodico>indice</indice_periodico>
+            <secciones_periodico num_secciones="2">
+                <seccion_periodico tipo_seccion="nacional">
+                    <articulo autor="Sr. X">
+                        <contenido_periodico enlace="#">
+                        Noticia
+                        </contenido_periodico>
+                    </articulo>
+                </seccion_periodico>
+                <seccion_periodico tipo_seccion="internacional">
+                    <articulo autor="Sr. Z">
+                        <contenido_periodico enlace="#">
+                        Noticia
+                        </contenido_periodico>
+                    </articulo>
+                </seccion_periodico>
+            </secciones_periodico>
+        </periodico>
+    </documento>
+
+    <documento>
+        <revista id="R1234" tipo_clase="otras">
+            <titulo_revista ISSN="44632">Numero Netherlands</titulo_revista>
+            <indice_revista>Numero Netherlands</indice_revista>
+            <secciones_revista num_secciones="2">
+                <seccion_revista num_paginas_sec="24">
+                    <contenido_revista enlace="#">
+                    Numero Netherlands
+                    </contenido_revista>
+                </seccion_revista>
+                <seccion_revista num_paginas_sec="20">
+                    <contenido_revista enlace="#">
+                    Numero Netherlands
+                    </contenido_revista>
+                </seccion_revista>
+            </secciones_revista>
+        </revista>
+    </documento>
+</biblioteca>
