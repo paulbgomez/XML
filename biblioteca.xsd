@@ -1,67 +1,105 @@
 <?xml version="1.0"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema">
-<biblioteca>
-    <documento>
-        <libro id="L1234" tipo_clase="novela">
-            <titulo_libro num_paginas="464">Outbound Flight</titulo_libro>
-            <indice_libro>Outbound Flight</indice_libro>
-            <sinopsis>
-                It began as the ultimate voyage of discovery, only to become a dark chapter in Jedi history. Now acclaimed author Timothy Zahn returns to tell the whole extraordinary story of the remarkable—and doomed—Outbound Flight Project.
-            </sinopsis>
-            <capitulos num_capitulos="2">
-                <capitulo num_paginas_cap="24">
-                    <contenido_libro enlace="#">
-                    Outbound Flight
-                    </contenido_libro>
-                </capitulo>
-                <capitulo num_paginas_cap="20">
-                    <contenido_libro enlace="#">
-                    Outbound Flight
-                    </contenido_libro>
-                </capitulo>
-            </capitulos>
-        </libro>
-    </documento>
+<element name="biblioteca">
+    <complexType>
+        <element name="documento">
+            <choice>
+                <element name="libro">
+                    <simpleType>
+                        <restriction base="string">
+                            <pattern value="[L][0-9]{4}"></pattern>
+                        </restriction>
+                    </simpleType>
+                    <complexType>
+                        <sequence>
+                            <element name="titulo_libro" type="string">
+                            </element>
+                            <element name="indice_libro" type="string"></element>
+                            <element name="sinopsis" type="string"></element>
+                            <element name="capitulos">
+                                <complexType>
+                                    <sequence>
+                                        <element name="capitulo">
+                                            <complexType>
+                                                <sequence>
+                                                    <element name="contenido" type="string"></element>
+                                                </sequence>
+                                            </complexType>
+                                        </element>
+                                    </sequence>
+                                </complexType>
+                            </element>
+                        </sequence>
+                        <attribute name="id" use="required" type="string"></attribute>
+                        <attribute name="tipo_clase" use="required" type="string"></attribute>
+                    </complexType>
+                </element>
 
-    <documento>
-        <periodico id="P1234" tipo_clase="internacional" fecha="08/05/2022">
-            <indice_periodico>indice</indice_periodico>
-            <secciones_periodico num_secciones="2">
-                <seccion_periodico tipo_seccion="nacional">
-                    <articulo autor="Sr. X">
-                        <contenido_periodico enlace="#">
-                        Noticia
-                        </contenido_periodico>
-                    </articulo>
-                </seccion_periodico>
-                <seccion_periodico tipo_seccion="internacional">
-                    <articulo autor="Sr. Z">
-                        <contenido_periodico enlace="#">
-                        Noticia
-                        </contenido_periodico>
-                    </articulo>
-                </seccion_periodico>
-            </secciones_periodico>
-        </periodico>
-    </documento>
+                <element name="revista">
+                    <simpleType>
+                        <restriction base="string">
+                            <pattern value="[R][0-9]{4}"></pattern>
+                        </restriction>
+                    </simpleType>
+                    <complexType>
+                        <sequence>
+                            <element name="titulo_revista" type="string"></element>
+                            <element name="indice_revista" type="string"></element>
+                            <element name="secciones_revista">
+                                <complexType>
+                                    <sequence>
+                                        <element name="seccion_revista">
+                                            <complexType>
+                                                <sequence>
+                                                    <element name="contenido_revista" type="string"></element>
+                                                </sequence>
+                                            </complexType>
+                                        </element>
+                                    </sequence>
+                                </complexType>
+                            </element>
+                        </sequence>
+                        <attribute name="id" use="required" type="string"></attribute>
+                        <attribute name="tipo_clase" use="required" type="string"></attribute>
+                    </complexType>
+                </element>
 
-    <documento>
-        <revista id="R1234" tipo_clase="otras">
-            <titulo_revista ISSN="44632">Numero Netherlands</titulo_revista>
-            <indice_revista>Numero Netherlands</indice_revista>
-            <secciones_revista num_secciones="2">
-                <seccion_revista num_paginas_sec="24">
-                    <contenido_revista enlace="#">
-                    Numero Netherlands
-                    </contenido_revista>
-                </seccion_revista>
-                <seccion_revista num_paginas_sec="20">
-                    <contenido_revista enlace="#">
-                    Numero Netherlands
-                    </contenido_revista>
-                </seccion_revista>
-            </secciones_revista>
-        </revista>
-    </documento>
-</biblioteca>
+                <element name="periodico">
+                    <simpleType>
+                        <restriction base="string">
+                            <pattern value="[P][0-9]{4}"></pattern>
+                        </restriction>
+                    </simpleType>
+                    <complexType>
+                        <sequence>
+                            <element name="indice_periodico" type="string"></element>
+                            <element name="secciones_periodico">
+                                <complexType>
+                                    <sequence>
+                                        <element name="seccion_periodico">
+                                            <complexType>
+                                                <sequence>
+                                                    <element name="articulo">
+                                                        <complexType>
+                                                            <sequence>
+                                                                <element name="contenido_periodico" type="string"></element>
+                                                            </sequence>
+                                                        </complexType>
+                                                    </element>
+                                                </sequence>
+                                            </complexType>
+                                        </element>
+                                    </sequence>
+                                </complexType>
+                            </element>
+                        </sequence>
+                    <attribute name="id" use="required" type="string"></attribute>
+                    <attribute name="tipo_clase" use="required" type="string"></attribute>
+                    <attribute name="fecha" use="required" type="date"></attribute>
+                    </complexType>
+                </element>
+            </choice>
+        </element>
+    </complexType> 
+</element>
 </schema>

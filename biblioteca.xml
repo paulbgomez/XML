@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <biblioteca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation= "DIRECCION_XSD">
+xsi:noNamespaceSchemaLocation= "biblioteca.xsd">
     <documento>
         <libro id="L1234" tipo_clase="novela">
             <titulo_libro num_paginas="464">Outbound Flight</titulo_libro>
